@@ -1,0 +1,75 @@
+.predictor-card {
+  max-width: 500px;
+  width: 100%;
+}
+
+.predictor-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.predictor-header h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.status-text {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.predictor-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+}
+
+.bar-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.bar-container {
+  height: 90px;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.bar {
+  width: 60%;
+  background: var(--primary);
+  opacity: 0.3;
+  border-radius: 4px 4px 0 0;
+  transition: var(--transition);
+}
+
+.bar:hover {
+  opacity: 0.7;
+}
+
+.bar.active {
+  background: var(--danger);
+  opacity: 1;
+  box-shadow: 0 0 10px rgba(239, 68, 68, 0.5);
+}
+
+.bar-label {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+.predictor-footer {
+  font-size: 0.85rem;
+  text-align: center;
+}

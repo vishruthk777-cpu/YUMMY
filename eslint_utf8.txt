@@ -1,0 +1,153 @@
+
+> yummy@0.0.0 lint
+> eslint .
+
+
+C:\Users\vishr\OneDrive\Desktop\yummy\server.js
+    6:14  error  'process' is not defined  no-undef
+  150:7   error  'process' is not defined  no-undef
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\components\AIAssistant.jsx
+  85:11  error  'isRemovalIntent' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\components\Cart.jsx
+  1:20  error  'useRef' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\context\CartContext.jsx
+  10:14  error  'e' is defined but never used  no-unused-vars
+  19:14  error  'e' is defined but never used  no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\Checkout.jsx
+   41:24  error    'setDeliveryInfo' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       no-unused-vars
+   53:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  51 |     const saved = localStorage.getItem('yummy_checkout');
+  52 |     if (saved) {
+> 53 |       setCheckoutData(JSON.parse(saved));
+     |       ^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  54 |     } else if (cart.length === 0) {
+  55 |       navigate('/menu');
+  56 |     }  react-hooks/set-state-in-effect
+   57:6   warning  React Hook useEffect has missing dependencies: 'cart.length' and 'navigate'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       react-hooks/exhaustive-deps
+  115:14  error    '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\Menu.jsx
+   1:20  error  'useEffect' is defined but never used. Allowed unused vars must match /^[A-Z_]/u                no-unused-vars
+  40:9   error  'scrollCategory' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\OrderTracking.jsx
+  20:10  error    'eta' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           no-unused-vars
+  20:15  error    'setEta' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        no-unused-vars
+  43:14  error    '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 no-unused-vars
+  43:17  error    Empty block statement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         no-empty
+  64:9   error    Error: Cannot access variable before it is declared
+
+`updateOrderStatus` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+  62 |     const timers = [
+  63 |       setTimeout(() => {
+> 64 |         updateOrderStatus('Preparing');
+     |         ^^^^^^^^^^^^^^^^^ `updateOrderStatus` accessed before it is declared
+  65 |       }, 8000),
+  66 |       setTimeout(() => {
+  67 |         updateOrderStatus('Out for Delivery');
+
+  74 |   }, [id]);
+  75 |
+> 76 |   const updateOrderStatus = (newStatus) => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 77 |     setCurrentStepIdx(STATUS_STEPS.findIndex(s => s.key === newStatus));
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 78 |     setOrder(prev => prev ? { ...prev, status: newStatus } : prev);
+     GÇª
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 86 |     } catch (_) {}
+     | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 87 |   };
+     | ^^^^^ `updateOrderStatus` is declared here
+  88 |
+  89 |   const handleReorder = () => {
+  90 |     if (!order?.items) return;  react-hooks/immutability
+  74:6   warning  React Hook useEffect has missing dependencies: 'loadOrder' and 'updateOrderStatus'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        react-hooks/exhaustive-deps
+  86:14  error    '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 no-unused-vars
+  86:17  error    Empty block statement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         no-empty
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\UserAccount.jsx
+    8:49  error  'isFavorite' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                no-unused-vars
+   29:14  error  '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             no-unused-vars
+   29:17  error  Empty block statement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     no-empty
+  131:70  error  Error: Cannot call impure function during render
+
+`Date.now` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  129 |                         <div className="order-date text-muted">
+  130 |                           <Clock size={13} />
+> 131 |                           {order.time || new Date(order.timestamp || Date.now()).toLocaleDateString('en-IN', {
+      |                                                                      ^^^^^^^^^^ Cannot call impure function
+  132 |                             day: 'numeric', month: 'short', year: 'numeric'
+  133 |                           })}
+  134 |                         </div>  react-hooks/purity
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\admin\AdminMenuManager.jsx
+  25:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  23 |       const overrides = JSON.parse(localStorage.getItem('yummy_menu_overrides') || '[]');
+  24 |       const hidden = JSON.parse(localStorage.getItem('yummy_hidden_items') || '[]');
+> 25 |       setHiddenIds(hidden);
+     |       ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  26 |       // Merge: overrides take precedence over base items
+  27 |       const overrideMap = {};
+  28 |       overrides.forEach(o => { overrideMap[o.id] = o; });  react-hooks/set-state-in-effect
+  34:14  error  '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           no-unused-vars
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\admin\Billing.jsx
+  51:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  49 |     if (bills.length === 0) {
+  50 |       localStorage.setItem('yummy_orders_db', JSON.stringify(SAMPLE_ORDERS));
+> 51 |       setBills(SAMPLE_ORDERS);
+     |       ^^^^^^^^ Avoid calling setState() directly within an effect
+  52 |     }
+  53 |   }, [bills.length]);
+  54 |  react-hooks/set-state-in-effect
+
+C:\Users\vishr\OneDrive\Desktop\yummy\src\pages\admin\Dashboard.jsx
+  15:7   error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+  13 |     try {
+  14 |       const allOrders = JSON.parse(localStorage.getItem('yummy_orders_db') || '[]');
+> 15 |       setOrders(allOrders);
+     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |       // Calc live stats
+  17 |       const today = new Date().toDateString();
+  18 |       const todayOrders = allOrders.filter(o => new Date(o.timestamp || Date.now()).toDateString() === today);  react-hooks/set-state-in-effect
+  18:13  error  'todayOrders' is assigned a value but never used. Allowed unused vars must match /^[A-Z_]/u                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               no-unused-vars
+  42:14  error  '_' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             no-unused-vars
+  42:17  error  Empty block statement                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     no-empty
+
+G£û 31 problems (29 errors, 2 warnings)
+
