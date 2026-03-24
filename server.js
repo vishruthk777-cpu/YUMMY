@@ -1,12 +1,26 @@
 import express from 'express';
 import cors from 'cors';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 import { MENU_ITEMS, CATEGORIES, COUPONS } from './server/menuData.js';
+import authRoutes from './server/routes/auth.js';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-app.use(cors());
+app.use(cors({ origin: process.env.FRONTEND_URL || 'http://localhost:5173', credentials: true }));
 app.use(express.json());
+app.use(cookieParser());
+
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/yummy')
+  .then(() => console.log('✅ MongoDB Connected'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
+
+// ─── Authentication ─────────────────────────────────────────────────────────
+app.use('/api/auth', authRoutes);
 
 // ─── Health Check ─────────────────────────────────────────────────────────
 app.get('/api/health', (req, res) => {
